@@ -5,7 +5,7 @@ ArrayList<Asteroid> rockArr = new ArrayList<Asteroid>();
 public void setup() {
   size(500, 500);
 
-  for (int i = 0; i < 5; i++) {
+  for (int i = 0; i < 20; i++) {
     Asteroid asteroid = new Asteroid(); // Assuming Asteroid is the correct class
     rockArr.add(asteroid);
   }
