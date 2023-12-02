@@ -28,7 +28,7 @@ public void draw() {
     asteroid.show();
     
     float d = dist((float) bob.getCenterX(), (float) bob.getCenterY(), (float) asteroid.getRockCenterX(), (float) asteroid.getRockCenterY());
-    if (d < 10) {
+    if (d < 20) {
       rockArr.remove(i);
     }
   }
