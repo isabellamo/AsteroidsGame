@@ -37,6 +37,7 @@ class Star{
    
    public void show(){
      fill(starColor);
+     stroke(starColor);
      ellipse((float) xCoord, (float) yCoord, 3, 3);
    }
 }
