@@ -1,72 +1,29 @@
-ArrayList <Bullet> shots = new ArrayList <Bullet>();
-Spaceship bob = new Spaceship();
-Star[] one = new Star[150];
-ArrayList <Asteroid> rockArr = new ArrayList <Asteroid> ();
-Asteroid rocky[] = new Asteroid[15];
-
-public void setup() {
-  size(500, 500);
+class Asteroid extends Floater{
+  private double rotSpeed;
   
-  for (int i = 0; i < rocky.length; i++){
-    rocky[i] = new Asteroid();
-    rockArr.add(rocky[i]);
-  }
-
-  for (int i = 0; i < one.length; i++) {
-    one[i] = new Star();
+  public Asteroid(){
+    corners = 6; 
+    myColor = 100;
+    xCorners = new int[] {(int) myCenterX - 11, (int) myCenterX + 7, (int) myCenterX + 13, (int) myCenterX + 6, (int) myCenterX - 11, (int) myCenterX - 5};
+    yCorners = new int[] {(int) myCenterY - 8, (int) myCenterY - 8, (int) myCenterY, (int) myCenterY + 10, (int) myCenterY + 8, (int) myCenterY}; 
+    myCenterX = 50;
+    myCenterY = 50; 
+    myXspeed = (Math.random() * 2) - 1;
+    myYspeed = (Math.random() * 2) - 1;  
+    myPointDirection = 0; 
+    rotSpeed = 0.5;
   }
   
-}
-
-public void draw() {
-  background(0);
+  public double getRockCenterX(){
+     return myCenterX;
+   }
+   
+   public double getRockCenterY(){
+     return myCenterY;
+   }
   
-  for (int i = 0; i < one.length; i++) {
-    one[i].show();
+  public void move(){
+    turn(rotSpeed);
+    super.move();
   }
-
-  bob.show();
-  bob.move();
-  
-  for (int i = 0; i < rockArr.size(); i++){
-    rockArr.get(i).move();
-    rockArr.get(i).show();
-    
-    float d = dist((float) bob.getCenterX(), (float) bob.getCenterY(), (float) rockArr.get(i).getRockCenterX(), (float) rockArr.get(i).getRockCenterY());
-    
-    if (d < 50) {
-      rockArr.remove(i);
-    }
-  }
-  
-  for (int i = 0; i < shots.size(); i++){
-    shots.get(i).move();
-    shots.get(i).show();
-  }
-  
-  for (int i = 0; i < shots.size(); i++){
-    for (int j = 0; j < rockArr.size(); j++){
-      float astBullDist = dist((float) shots.get(i).getCenterX(), (float) shots.get(i).getCenterY(), (float) rockArr.get(i).getRockCenterX(), (float) rockArr.get(i).getRockCenterY());
-      
-      if (astBullDist < 20){
-        rockArr.remove(j); 
-        shots.remove(i);    
-      }
-    }
-  }
-}
-
-public void keyPressed() {
-    if (key == 'h') { // hyperspace
-    bob.hyperspace();
-  } else if (key == 'r') { // turn right
-    bob.turn(10);
-  } else if (key == 'l') { // turn left
-    bob.turn(-10);
-  } else if (key == 'a') { // accelerate
-    bob.getMyPointDirection();
-    bob.accelerate(1);
-  } else if (key == 'b'){
-    shots.add(new Bullet(bob));
-  }
-}
+}  
