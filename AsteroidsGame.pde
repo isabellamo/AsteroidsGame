@@ -41,8 +41,6 @@ public void draw() {
 public void keyPressed() {
     if (key == 'h') { // hyperspace
     bob.hyperspace();
-  } else if (key == 'v') { // speed
-    bob.setXspeed(2);
   } else if (key == 'r') { // turn right
     bob.turn(10);
   } else if (key == 'l') { // turn left
