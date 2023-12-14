@@ -66,7 +66,7 @@ public void keyPressed() {
   } else if (key == 'a') { // accelerate
     bob.getMyPointDirection();
     bob.accelerate(1);
-  } else if (key == ' '){
+  } else if (key == 'b'){
     shots.add(new Bullet(bob));
   }
 }
