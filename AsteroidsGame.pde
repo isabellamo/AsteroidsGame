@@ -1,3 +1,4 @@
+ArrayList <Bullet> shots = new ArrayList <Bullet>();
 Spaceship bob = new Spaceship();
 Star[] one = new Star[150];
 ArrayList <Asteroid> rockArr = new ArrayList <Asteroid> ();
@@ -14,6 +15,7 @@ public void setup() {
   for (int i = 0; i < one.length; i++) {
     one[i] = new Star();
   }
+  
 }
 
 public void draw() {
@@ -36,6 +38,22 @@ public void draw() {
       rockArr.remove(i);
     }
   }
+  
+  for (int i = 0; i < shots.size(); i++){
+    shots.get(i).move();
+    shots.get(i).show();
+  }
+  
+  for (int i = 0; i < shots.size(); i++){
+    for (int j = 0; j < rockArr.size(); j++){
+      float astBullDist = dist((float) shots.get(i).getCenterX(), (float) shots.get(i).getCenterY(), (float) rockArr.get(i).getRockCenterX(), (float) rockArr.get(i).getRockCenterY());
+      
+      if (astBullDist < 20){
+        rockArr.remove(j); 
+        shots.remove(i);    
+      }
+    }
+  }
 }
 
 public void keyPressed() {
@@ -48,5 +66,7 @@ public void keyPressed() {
   } else if (key == 'a') { // accelerate
     bob.getMyPointDirection();
     bob.accelerate(1);
+  } else if (key == ' '){
+    shots.add(new Bullet(bob));
   }
 }
